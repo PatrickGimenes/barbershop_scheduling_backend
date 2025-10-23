@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 import { pool } from "../config/database";
 import { Client } from "../models/client";
+import {hashService} from "../core/services/hashService";
 
 export const gelAllClients = async (_: Request, res: Response) => {
-  const result = await pool.query("SELECT * FROM clients ORDER BY id ASC");
+  const result = await pool.query("SELECT * FROM clients ORDER BY name ASC");
   res.json(result.rows);
 };
 
@@ -15,9 +16,11 @@ export const newClient = async (req: Request, res: Response) => {
   }
 
   try {
+    const hashedName = await hashService.hash(name);
+    const hashedPhone = await hashService.hash(phone);
     await pool.query("INSERT INTO clients (name, phone) VALUES ($1, $2)", [
-      name,
-      phone,
+      hashedName,
+      hashedPhone,
     ]);
     res.status(201).json({ message: "Cliente cadastrado!" });
   } catch (error) {
