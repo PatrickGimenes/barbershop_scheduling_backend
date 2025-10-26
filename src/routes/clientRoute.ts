@@ -1,9 +1,13 @@
 import { Router } from "express";
-import { gelAllClients, newClient } from "../controller/clientController";
+import { authenticate } from "../middleware/authenticate";
+import { login } from "../controller/authController";
+import { gelAllClients, newClient, scheduling } from "../controller/clientController";
 
 const router = Router();
 
 router.get('/', gelAllClients);
+router.post('/login', login)
+router.get('/agendamentos', authenticate, scheduling)
 router.post('/', newClient)
 
 export default router;

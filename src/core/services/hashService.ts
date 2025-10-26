@@ -13,7 +13,9 @@ export class HashService {
   }
 
   async compare(value: string, hashedValue: string): Promise<boolean> {
+
     if (!value || !hashedValue) return false;
+    
     return await bcrypt.compare(value, hashedValue);
   }
 }
