@@ -24,10 +24,10 @@ export async function login(req: Request, res: Response) {
 
   if (!match) return res.status(401).json({ error: "Credenciais inválidas" });
 
-  const accssesToken = signAccessToken({ userId: user.id });
+  const accessToken = signAccessToken({ userId: user.id });
 
   res.json({
-    accssesToken,
+    accessToken,
     user: { id: user.id, nome: user.nome, phone },
   });
 }

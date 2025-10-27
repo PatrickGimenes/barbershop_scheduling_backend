@@ -8,7 +8,6 @@ const ACCESS_EXPIRES_IN: number = Number(
 
 export function signAccessToken(payload: object) {
   const options: SignOptions = { expiresIn: ACCESS_EXPIRES_IN };
-  console.log(options);
   return jwt.sign(payload, ACCESS_SECRET, options);
 }
 
