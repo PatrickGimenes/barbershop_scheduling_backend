@@ -1,4 +1,3 @@
-import { log } from "console";
 import jwt, { SignOptions } from "jsonwebtoken";
 
 const ACCESS_SECRET = process.env.JWT_ACCESS_SECRET!;
