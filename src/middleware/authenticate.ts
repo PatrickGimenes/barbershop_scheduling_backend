@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { verifyAccessToken } from '../core/utils/jwtUtils';
-import { error } from 'console';
+
 
 export function authenticate(req: Request, res: Response, next:NextFunction){
     const authHeader = req.headers['authorization'];
