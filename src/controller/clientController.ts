@@ -30,8 +30,9 @@ export const newClient = async (req: Request, res: Response) => {
   }
 };
 
-export const scheduling = async (req: Request, res: Response) => {
-  res.json({
-    msg: "teste",
-  });
+export const scheduling = async (_: Request, res: Response) => {
+  const result = await pool.query(
+    "SELECT * FROM tb_agendamentos ORDER BY data_agendamento ASC"
+  );
+  res.json(result.rows);
 };
