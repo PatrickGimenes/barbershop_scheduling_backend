@@ -11,17 +11,17 @@ export const getAllServices = async (_: Request, res: Response) => {
 
 
 export const newService = async (req: Request, res: Response) => {
-  const { name, value }: Service = req.body;
+  const { name, value, description, icon }: Service = req.body;
 
-  if (!name || !value) {
+  if (!name || !value || !description || !icon) {
     return res.status(400).json({ error: "Campos obrigatórios" });
   }
 
   try {
 
     await pool.query(
-      "INSERT INTO tb_services (nome, valor ) VALUES ($1, $2)",
-      [name, value]
+      "INSERT INTO tb_services (nome, valor, descricao, icon ) VALUES ($1, $2, $3. $4)",
+      [name, value, description, icon]
     );
     res.status(201).json({ message: "Serviço cadastrado!" });
   } catch (error) {
