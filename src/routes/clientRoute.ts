@@ -4,14 +4,18 @@ import { login } from "../controller/authController";
 import {
   gelAllClients,
   newClient,
-  scheduling,
+  deleteClient,
+  getClientById,
+  updateClient,
 } from "../controller/clientController";
 
 const router = Router();
 
-router.get("/", gelAllClients);
+router.get("/", authenticate, gelAllClients);
+router.get("/:id", authenticate, getClientById);
 router.post("/login", login);
-router.get("/agendamentos", authenticate, scheduling);
 router.post("/registro", newClient);
+router.delete("/:id", authenticate, deleteClient);
+router.put("/:id", authenticate, updateClient);
 
 export default router;

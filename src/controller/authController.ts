@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { pool } from "../config/database";
-import { Client } from "../models/client";
+import { Client } from "../types/client";
 
 import { hashService } from "../core/services/hashService";
 
